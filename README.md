@@ -5,32 +5,33 @@ We will analyze the consumer complain text data for relations between.......... 
 
 ## Dictionary 📖
 The columns that were used are: 
-1. Date.received
-2. Product
-3. Issue
-4. Complain
-5. Company.public.response
-6. Company
-7. State
-8. Submitted.via
-9. Date.sent.to.company
-10. Company.response.to.consumer
-11. Timely.response.
-12. Consumer.disputed.
-13. Complaint.ID              
-
+1. Product
+2. Complain
+3. Company
+4. Timely.response.
+5. Consumer.disputed.
+   
 ---
 ## Data Cleaning 🧹
-1. Renamed Consumer.complaint.narrativecolumn to complaint.
-   
-3. Filtered out blank and responseless colums like (Consumer.complaint.narrative & Company.public.response.
-   
-4. Calculated the percentage of resolved complaints
-   resolved_complaints <- consumer_complaints %>%
-  filter(Timely.response. == "Yes" & Consumer.disputed. == "No")
-5. Join consumer_complaints with emotions lexicon
+1. # Filter out blank and responseless complaints
+   This was nessesary so my table was more readable and easy for analysis.
+   df_complaints <- df_complaints %>%
+  filter(Consumer.complaint.narrative != "" & Company.public.response != "")
 
+2. Rename the complaint column
+   I rnamed the customer complaint narrative column to just Complain so its simplified to write.
+   df_complaints <- df_complaints %>%
+  rename(Complain = Consumer.complaint.narrative)
 
+3. Cleaned the data frame by removing punctuations, numbers and spaces.
+   df_complaints$Complain <- str_replace_all(df_complaints$Complain, "[[:punct:]]", "")
+   df_complaints$Complain <- str_remove_all(df_complaints$Complain, "\\d+")
+   df_complaints$Complain <- str_squish(df_complaints$Complain)
+
+4. Creating new table
+   Created a nnew table with just the colums i will be using for my analysis.
+   consumer_complaints <- df_complaints%>%
+     dplyr::select(Company, Product, Complain, Consumer.disputed., Timely.response. )
 
 ##Data Analysis
 1. Plot top companies with positive sentiments
