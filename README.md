@@ -32,6 +32,31 @@ The columns that were used are:
 
 
 
+##Data Analysis
+1. Plot top companies with positive sentiments
+   the plot highlights the top 20 compaies that have the highest positive sentiment count.
+<div align = "center">
+<img src = "Images/Positive sentiment companies.png" width = "700")>
+</div>
+
+2. Plot top companies with negative sentiments
+   the plot highlights the top 20 compaies that have the highest negative sentiment count.
+<div align = "center">
+<img src = "Images/negative complaint companies.png" width = "700")>
+</div>
+
+3. 
+
+
+4. Creating word cloud with word sizes based on frequency
+   Used the frequency if the words to determine the size. 
+<div align = "center">
+<img src = "Images/Wordcloud.pngg" width = "700")>
+</div>
+
+- The red is the negative words from the complaints.
+- The blue is the positive words from the complaints.
+
 
 ## Data Summary
 
