@@ -14,13 +14,13 @@ The columns that were used are:
 ---
 ## Data Cleaning 🧹
 1. Filter out blank and responseless complaints
-   This was nessesary so my table was more readable and easy for analysis.
+   -This was nessesary so my table was more readable and easy for analysis.
  ```
    df_complaints <- df_complaints %>%
   filter(Consumer.complaint.narrative != "" & Company.public.response != "")
 ```
 3. Rename the complaint column
-   I renamed the customer complaint narrative column to just Complain so its simplified to write.
+   -I renamed the customer complaint narrative column to just Complain so its simplified to write.
   ```
  df_complaints <- df_complaints %>%
   rename(Complain = Consumer.complaint.narrative)
@@ -31,22 +31,18 @@ new_table <- df_complaints %>%
   select(Product, Complain, Company)
 ```
 3.Clean and tokenize the complaints into individual words
-    Clean the text: remove punctuation, numbers, and extra spaces
+    -Clean the text: remove punctuation, numbers, and extra spaces
+    
      ```
      mutate(Complain = str_replace_all(Complain, "[[:punct:]]", "") %>%
        str_remove_all("\\d+") %>%
            str_squish()) %>%
-      ```
-   Tokenize the complaints into individual words after cleaning
     unnest_tokens(word, Complain) %>%
-   Remove stop words, unnecessary characters, single characters, and numbers
-    
-```
     anti_join(stop_words, by = "word") %>%
      filter(!grepl("[^[:alnum:][:space:]]", word)) %>%
      filter(nchar(word) > 1) %>%
      filter(!grepl("\\d+", word))
-```
+      ```
 
 ##Data Analysis
 1. Found frequently used words
