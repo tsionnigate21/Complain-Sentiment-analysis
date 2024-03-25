@@ -8,8 +8,6 @@ The columns that were used are:
 1. Product
 2. Complain
 3. Company
-4. Timely.response.
-5. Consumer.disputed.
    
 ---
 ## Data Cleaning 🧹
@@ -25,50 +23,101 @@ The columns that were used are:
  df_complaints <- df_complaints %>%
   rename(Complain = Consumer.complaint.narrative)
 ```
-4. Create  and desplay new table
+4. Create new table
+   -Table contains Product, Complain, and Company columns
+
   ```
 new_table <- df_complaints %>%
   select(Product, Complain, Company)
 ```
-3.Clean and tokenize the complaints into individual words
-    -Clean the text: remove punctuation, numbers, and extra spaces
-    
-     ```
+
+3. Load stop words
+   -to remove common words
+```   
+data("stop_words")
+
+```
+4.Clean the text
+
+```
      mutate(Complain = str_replace_all(Complain, "[[:punct:]]", "") %>%
-       str_remove_all("\\d+") %>%
-           str_squish()) %>%
-    unnest_tokens(word, Complain) %>%
-    anti_join(stop_words, by = "word") %>%
-     filter(!grepl("[^[:alnum:][:space:]]", word)) %>%
-     filter(nchar(word) > 1) %>%
-     filter(!grepl("\\d+", word))
-      ```
+         str_remove_all("\\d+") %>%
+         str_squish()) %>%
+  # Tokenize the complaints into individual words after cleaning
+tidy_complaints <- new_table %>%
+  unnest_tokens(word, Complain) %>%
+  # Remove stop words, unnecessary characters, single characters, and numbers
+  anti_join(stop_words, by = "word") %>%
+  filter(!grepl("[^[:alnum:][:space:]]", word)) %>%
+  filter(nchar(word) > 1) %>%
+  filter(!grepl("\\d+", word))
+```
+## Data Summary
 
-##Data Analysis
-1. Found frequently used words
-   -
-3. Joining the complaints data with the sentiment lexicon
-   -
-   ..........table ........
-5. Found the sentiment score for each company
-   -
-6. Plot top companies with positive sentiments
-   -the plot highlights the top 20 compaies that have the highest positive sentiment count.
-<div align = "center">
-<img src = "Images/Positive sentiment companies.png" width = "700")>
-</div>
 
-5. Plot top companies with negative sentiments
+
+
+
+
+
+
+
+## Data Analysis
+1. Common joy words in products
+   -
+
+   
+3. Negative and positive sentiment in separate columns
+   -
+   <div align = "center">
+   <img src = "           " width = "700")>
+   </div>
+
+   
+4. Comparing the three sentiment dictionaries
+   -
+
+   
+6. Visualizing the estimate of the net sentiment (positive - negative)
+   -
+   
+7. Joining the complaints data with the sentiment lexicon
+   -
+
+   
+9. Found the sentiment score for each company
+   -
+
+   
+11. How many positive and negative words are in these lexicons.
+
+   -
+   
+12. To answer the most negative wod reciveing Products in the company.
+    -
+
+    
+14. Plot top companies with negative sentiments
    -the plot highlights the top 20 compaies that have the highest negative sentiment count.
 <div align = "center">
 <img src = "Images/negative complaint companies.png" width = "700")>
 </div>
 
-6. Print the percentage of resolved complaints, because i was curious of the cases being timely resolved.
+
+
+10. Plot top companies with positive sentiments
+   -the plot highlights the top 20 compaies that have the highest positive sentiment count.
+<div align = "center">
+<img src = "Images/Positive sentiment companies.png" width = "700")>
+</div>
+
+
+
+11. Get the frequency of the positive and negative sentiments.
    -
-8. Get the frequency of the positive and negative sentiments.
-  -
-9. Plot positive and negative sentiments separately
+
+
+11. Plot positive and negative sentiments separately
    -
 <div align = "center">
 <img src = "Images/Images/Rplot.png" width = "700")>
@@ -80,23 +129,15 @@ new_table <- df_complaints %>%
 </div>
 
 
-4. Creating word cloud with word sizes based on frequency
+
+
+13. Creating word cloud with word sizes based on frequency
    -Used the frequency if the words to determine the size.
-   
 <div align = "center">
 <img src = "Images/Wordcloud.png" width = "700")>
 </div>
 
-- The red is the negative words from the complaints.
-- The blue is the positive words from the complaints.
-
-
-## Data Summary
-
-
-
-## Data Analysis
-
 
 
 ##Conclusion
+--
