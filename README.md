@@ -2,7 +2,7 @@
 
 ## Introduction
 This project aims to analyze consumer complaint text data to identify relationships between different products, sentiments expressed, and the companies involved.
-
+---
 ## Data Dictionary 📖
 The dataset consists of the following columns:
 1. Product: The product associated with the complaint.
@@ -20,6 +20,7 @@ The dataset consists of the following columns:
 4. **Removing Stop Words**: Common stop words were removed from the complaint text to focus on meaningful content.
 
 5. **Text Cleaning**: The complaint text was cleaned by removing punctuation, digits, and unnecessary characters.
+---
 
 ## Data Summary
 
@@ -29,28 +30,33 @@ The dataset consists of the following columns:
 
 ## Data Summary
 4. Create new table
-   -Table contains Product, Complain, and Company columns
+   -Table summarisin 3 colums Product, Complain, and Company columns
 
 ## Data Analysis
 
-1. **Identifying Joy-Related Words**: Joy-related sentiment words from the NRC lexicon were filtered and counted in complaints related to different products.
+1. **Identifying Joy-Related Words**:
+   Joy-related sentiment words from the NRC lexicon were filtered and counted in complaints related to different products.
 
-2. **Sentiment Analysis**: Negative and positive sentiment counts were computed separately for each product category.
+2. **Sentiment Analysis**:
+   Negative and positive sentiment counts were computed separately for each product category.
    <div align = "center">
    <img src = "Images/Positive  and negative sentiment.png" width = "700")>
    </div>
 
-3. **Comparing Sentiment Dictionaries**: The sentiment scores obtained from different sentiment dictionaries (AFINN, Bing et al., NRC) were compared.
+3. **Comparing Sentiment Dictionaries**:
+    The sentiment scores obtained from different sentiment dictionaries (AFINN, Bing et al., NRC) were compared.
 
-4. **Visualizing Net Sentiment**: The net sentiment (positive - negative) estimate was visualized to understand overall sentiment trends.
+4. **Visualizing Net Sentiment**:
+   The net sentiment (positive - negative) estimate was visualized to understand overall sentiment trends.
    <div align = "center">
    <img src = "Images/Estimate of net sentiments.png" width = "700")>
    </div>
 
-5. **Company Sentiment Score**: Sentiment scores were calculated for each company based on the sentiments expressed in complaints.
+5. **Company Sentiment Score**:
+    Sentiment scores were calculated for each company based on the sentiments expressed in complaints.
 
 6. **
-7. Identifying Top Companies with Positive and Negative Sentiments**: The top 20 companies with the highest positive and negative sentiment counts were plotted.
+   Identifying Top Companies with Positive and Negative Sentiments**: The top 20 companies with the highest positive and negative sentiment counts were plotted.
    <div align = "center">
    <img src = "Images/negative complaint companies.png" width = "700")>
    </div>
@@ -59,14 +65,8 @@ The dataset consists of the following columns:
    <img src = "Images/Positive sentiment companies.png" width = "700")>
    </div>
    
-8. **Frequency of Positive and Negative Words**: The frequency of positive and negative words in the sentiment lexicons was analyzed.
-
-
-9. **
-10. Identifying Most Negative Products for Each Company**: The products receiving the most negative feedback for each company were identified.
-
-
-
+7. **Frequency of Positive and Negative Words**:
+   The frequency of positive and negative words in the sentiment lexicons was analyzed.
 
 ---
 ## Word Cloud
@@ -75,7 +75,7 @@ The dataset consists of the following columns:
  -Creating word cloud with word sizes based on frequency
    -Used the frequency if the words to determine the size.
    <div align = "center">
-   <img src = "Images/Wordcloud.png" width = "700")>
+   <img src = "Images/Word cloud.png" width = "700")>
    </div>
 
 ---
