@@ -1,143 +1,86 @@
-# Complain-Sentiment-analysis
+# Complain-Sentiment-Analysis
 
 ## Introduction
-We will analyze the consumer complain text data for relations between.......... <br>
+This project aims to analyze consumer complaint text data to identify relationships between different products, sentiments expressed, and the companies involved.
 
-## Dictionary 📖
-The columns that were used are: 
-1. Product
-2. Complain
-3. Company
-   
+## Data Dictionary 📖
+The dataset consists of the following columns:
+1. Product: The product associated with the complaint.
+2. Complain: The text containing the consumer complaint.
+3. Company: The company to which the complaint is addressed.
+4. 
 ---
 ## Data Cleaning 🧹
-1. Filter out blank and responseless complaints
-   -This was nessesary so my table was more readable and easy for analysis.
- ```
-   df_complaints <- df_complaints %>%
-  filter(Consumer.complaint.narrative != "" & Company.public.response != "")
-```
-3. Rename the complaint column
-   -I renamed the customer complaint narrative column to just Complain so its simplified to write.
-  ```
- df_complaints <- df_complaints %>%
-  rename(Complain = Consumer.complaint.narrative)
-```
+1. **Filtering out Blank and Responseless Complaints**: Blank and responseless complaints were removed to enhance readability and facilitate analysis.
+
+2. **Renaming Columns**: The column containing customer complaint narratives was renamed to "Complain" for simplification.
+
+3. **Creating a New Table**: A new table was created containing the Product, Complain, and Company columns.
+
+4. **Removing Stop Words**: Common stop words were removed from the complaint text to focus on meaningful content.
+
+5. **Text Cleaning**: The complaint text was cleaned by removing punctuation, digits, and unnecessary characters.
+
+## Data Summary
+
+6. **Tokenizing Complaints**: The complaints were tokenized into individual words after cleaning.
+
+---
+
+## Data Summary
 4. Create new table
    -Table contains Product, Complain, and Company columns
 
-  ```
-new_table <- df_complaints %>%
-  select(Product, Complain, Company)
-```
-
-3. Load stop words
-   -to remove common words
-```   
-data("stop_words")
-
-```
-4.Clean the text
-
-```
-     mutate(Complain = str_replace_all(Complain, "[[:punct:]]", "") %>%
-         str_remove_all("\\d+") %>%
-         str_squish()) %>%
-  # Tokenize the complaints into individual words after cleaning
-tidy_complaints <- new_table %>%
-  unnest_tokens(word, Complain) %>%
-  # Remove stop words, unnecessary characters, single characters, and numbers
-  anti_join(stop_words, by = "word") %>%
-  filter(!grepl("[^[:alnum:][:space:]]", word)) %>%
-  filter(nchar(word) > 1) %>%
-  filter(!grepl("\\d+", word))
-```
-## Data Summary
-
-
-
-
-
-
-
-
-
 ## Data Analysis
-1. Common joy words in products
-   -
 
-   
-3. Negative and positive sentiment in separate columns
-   -
+1. **Identifying Joy-Related Words**: Joy-related sentiment words from the NRC lexicon were filtered and counted in complaints related to different products.
+
+2. **Sentiment Analysis**: Negative and positive sentiment counts were computed separately for each product category.
    <div align = "center">
-   <img src = "           " width = "700")>
+   <img src = "Images/Positive  and negative sentiment.png" width = "700")>
    </div>
 
+3. **Comparing Sentiment Dictionaries**: The sentiment scores obtained from different sentiment dictionaries (AFINN, Bing et al., NRC) were compared.
+
+4. **Visualizing Net Sentiment**: The net sentiment (positive - negative) estimate was visualized to understand overall sentiment trends.
+   <div align = "center">
+   <img src = "Images/Estimate of net sentiments.png" width = "700")>
+   </div>
+
+5. **Company Sentiment Score**: Sentiment scores were calculated for each company based on the sentiments expressed in complaints.
+
+6. **
+7. Identifying Top Companies with Positive and Negative Sentiments**: The top 20 companies with the highest positive and negative sentiment counts were plotted.
+   <div align = "center">
+   <img src = "Images/negative complaint companies.png" width = "700")>
+   </div>
+
+   <div align = "center">
+   <img src = "Images/Positive sentiment companies.png" width = "700")>
+   </div>
    
-4. Comparing the three sentiment dictionaries
-   -
-
-   
-6. Visualizing the estimate of the net sentiment (positive - negative)
-   -
-   
-7. Joining the complaints data with the sentiment lexicon
-   -
-
-   
-9. Found the sentiment score for each company
-   -
-
-   
-11. How many positive and negative words are in these lexicons.
-
-   -
-   
-12. To answer the most negative wod reciveing Products in the company.
-    -
-
-    
-14. Plot top companies with negative sentiments
-   -the plot highlights the top 20 compaies that have the highest negative sentiment count.
-<div align = "center">
-<img src = "Images/negative complaint companies.png" width = "700")>
-</div>
+8. **Frequency of Positive and Negative Words**: The frequency of positive and negative words in the sentiment lexicons was analyzed.
 
 
-
-10. Plot top companies with positive sentiments
-   -the plot highlights the top 20 compaies that have the highest positive sentiment count.
-<div align = "center">
-<img src = "Images/Positive sentiment companies.png" width = "700")>
-</div>
-
-
-
-11. Get the frequency of the positive and negative sentiments.
-   -
-
-
-11. Plot positive and negative sentiments separately
-   -
-<div align = "center">
-<img src = "Images/Images/Rplot.png" width = "700")>
-</div>
-
-
-<div align = "center">
-<img src = "Images/Images/Negative words.png" width = "700")>
-</div>
+9. **
+10. Identifying Most Negative Products for Each Company**: The products receiving the most negative feedback for each company were identified.
 
 
 
 
-13. Creating word cloud with word sizes based on frequency
+---
+## Word Cloud
+
+1. **Creating Word Cloud**: A word cloud was generated to visualize word frequencies in the complaint text, with word sizes based on frequency.
+ -Creating word cloud with word sizes based on frequency
    -Used the frequency if the words to determine the size.
-<div align = "center">
-<img src = "Images/Wordcloud.png" width = "700")>
-</div>
+   <div align = "center">
+   <img src = "Images/Wordcloud.png" width = "700")>
+   </div>
+
+---
 
 
+## Conclusion
 
-##Conclusion
---
+This analysis provides valuable insights into the sentiments expressed in consumer complaints, helping companies understand areas of improvement and address customer concerns effectively.
