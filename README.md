@@ -67,12 +67,12 @@ The dataset consists of the following columns:
 
    Negative Sentiment Words
    <div align = "center">
-   <img src = "Images/negative complaint companies.png" width = "700")>
+   <img src = "Images/Negative words.png" width = "700")>
    </div>
    
    Positive Sentiment Words
    <div align = "center">
-   <img src = "Images/Positive sentiment companies.png" width = "700")>
+   <img src = "Images/Positive words.png" width = "700")>
    </div>
 
 ---
