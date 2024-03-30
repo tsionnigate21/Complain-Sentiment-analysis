@@ -129,3 +129,35 @@ tidy_complaints %>%
   comparison.cloud(colors = c("Red", "Blue"),
                    max.words = 100)
 
+# Joining complaint words with sentiment lexicon
+word_sentiment <- tidy_complaints %>%
+  inner_join(get_sentiments("bing"), by = "word", relationship = "many-to-many")
+
+# Get the frequency of positive and negative sentiments
+positive_words <- word_sentiment %>%
+  filter(sentiment == "positive") %>%
+  count(word) %>%
+  top_n(20, n)
+
+negative_words <- word_sentiment %>%
+  filter(sentiment == "negative") %>%
+  count(word) %>%
+  top_n(20, n)
+
+# Plot positive and negative sentiments separately
+ggplot(positive_words, aes(x = reorder(word, n), y = n)) +
+  geom_col(fill = "green") +
+  labs(title = "Top 20 Words with Positive Sentiment",
+       x = "Word",
+       y = "Frequency") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+ggplot(negative_words, aes(x = reorder(word, n), y = n)) +
+  geom_col(fill = "red") +
+  labs(title = "Top 20 Words with Negative Sentiment",
+       x = "Word",
+       y = "Frequency") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+
