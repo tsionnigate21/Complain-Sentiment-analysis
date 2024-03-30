@@ -20,9 +20,6 @@ The dataset consists of the following columns:
 4. **Removing Stop Words**: Common stop words were removed from the complaint text to focus on meaningful content.
 
 5. **Text Cleaning**: The complaint text was cleaned by removing punctuation, digits, and unnecessary characters.
----
-
-## Data Summary
 
 6. **Tokenizing Complaints**: The complaints were tokenized into individual words after cleaning.
 
